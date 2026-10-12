@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="theme-color" content="#fff7fa">
+
+    <title>For Saloni 🌸</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background decoration -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- Music -->
+    <audio id="birthdayMusic" loop>
+        <source src="music/birthday-song.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- =========================================
+         MAIN APP
+    ========================================== -->
+
+    <main id="app">
+
+
+        <!-- =====================================
+             SCENE 1 — OPENING
+        ====================================== -->
+
+        <section class="scene active"
+            id="scene-opening">
+
+            <div class="floating-flower flower-1">🌸</div>
+            <div class="floating-flower flower-2">🌷</div>
+            <div class="floating-flower flower-3">🌼</div>
+
+            <div class="scene-content opening-content">
+
+                <div class="small-flower">
+                    🌸
+                </div>
+
+                <p class="eyebrow">
+                    A LITTLE SURPRISE
+                </p>
+
+                <h1>
+                    Hey,
+                    <span>Saloni.</span>
+                </h1>
+
+                <p class="opening-text">
+                    I made something
+                    especially for you.
+                </p>
+
+                <p class="opening-subtext">
+                    It's not just a birthday wish...
+                </p>
+
+                <button
+                    class="primary-button"
+                    id="beginButton">
+
+                    Begin the surprise
+                    <span>→</span>
+
+                </button>
+
+                <p class="tiny-hint">
+                    👆 Your surprise starts here ✨
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SCENE 2 — BIRTHDAY
+        ====================================== -->
+
+        <section class="scene"
+            id="scene-birthday">
+
+            <div id="birthdayConfetti"></div>
+
+            <div class="scene-content birthday-content">
+
+                <p class="eyebrow">
+                    3 SEPTEMBER
+                </p>
+
+                <p class="birthday-small">
+                    Today is a little more special...
+                </p>
+
+                <h2>
+                    Happy
+                    <br>
+                    <span>Birthday</span>
+                </h2>
+
+                <h3>
+                    Saloni 🌸
+                </h3>
+
+                <div class="birthday-cake">
+                    🎂
+                </div>
+
+                <p class="birthday-message">
+                    Here's to another beautiful
+                    year of your life.
+                </p>
+
+                <button
+                    class="next-button"
+                    data-next="scene-distance">
+
+                    There's something for you
+                    <span>→</span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+      <!-- =====================================
+     SCENE 3 — PUNE → NAGPUR
+====================================== -->
+
+<section class="scene"
+    id="scene-distance">
+
+    <div class="scene-content distance-content">
+
+        <p class="eyebrow">
+            FROM ME TO YOU
+        </p>
+
+        <h2>
+            A little message
+            <br>
+            from <span>Pune.</span>
+        </h2>
+
+
+        <div class="city-route">
+
+            <div class="city city-pune">
+
+                <div class="city-pin">
+                    📍
+                </div>
+
+                <strong>
+                    PUNE
+                </strong>
+
+                <small>
+                    Me
+                </small>
+
+            </div>
+
+
+            <div class="route">
+
+                <div class="route-line"></div>
+
+                <div
+                    class="travelling-letter"
+                    id="travellingLetter">
+
+                    💌
+
+                </div>
+
+            </div>
+
+
+            <div class="city city-nagpur">
+
+                <div class="city-pin">
+                    🌸
+                </div>
+
+                <strong>
+                    NAGPUR
+                </strong>
+
+                <small>
+                    You
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="distance-message"
+            id="distanceMessage">
+
+            <p>
+                You're in Nagpur.
+            </p>
+
+            <p>
+                I'm in Pune.
+            </p>
+
+        </div>
+
+
+        <div class="letter-status"
+            id="letterStatus">
+
+            💌 A little something
+            is travelling to you...
+
+        </div>
+
+
+        <div class="distance-result hidden">
+
+            <p>
+                A little piece of my
+                birthday wish travelled
+                all the way to you. ❤️
+            </p>
+
+            <button
+                class="next-button"
+                data-next="scene-flowers">
+
+                Continue to the next surprise
+                <span>→</span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     SCENE 4 — FLOWER GARDEN
+====================================== -->
+
+<section class="scene"
+    id="scene-flowers">
+
+    <div class="scene-content flowers-content">
+
+        <p class="eyebrow">
+            SOMETHING FOR YOU
+        </p>
+
+        <h2>
+            Let's grow
+            <br>
+            a little <span>garden.</span>
+        </h2>
+
+        <p class="scene-description">
+            I couldn't send you flowers
+            through this screen...
+            <br><br>
+            So here's a little garden,
+            growing just for you. 🌸
+        </p>
+
+
+        <div class="garden"
+            id="garden">
+
+            <div class="garden-ground"></div>
+
+        </div>
+
+
+        <p class="flower-count"
+            id="flowerCount">
+
+            Waiting for something beautiful...
+
+        </p>
+
+
+        <div class="flower-message"
+            id="flowerMessage">
+
+            🌱 Something is about to grow...
+
+        </div>
+
+
+        <button
+            class="next-button hidden"
+            id="flowersContinue">
+
+            Take a look at your garden
+            <span>→</span>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     SCENE 5 — FOOD
+====================================== -->
+
+<section class="scene"
+    id="scene-food">
+
+    <div class="scene-content food-content">
+
+        <p class="eyebrow">
+            IMPORTANT QUESTION
+        </p>
+
+        <h2>
+            Okay...
+            <br>
+            let's talk <span>food.</span>
+        </h2>
+
+        <p class="scene-description">
+            Because a birthday without
+            good food would be unacceptable.
+            😂
+        </p>
+
+
+        <p class="food-question">
+            And I already know one thing...
+        </p>
+
+
+        <div class="jalebi-intro">
+
+            <span>🍯</span>
+
+            <p>
+                You can't say no to
+                <strong>Jalebi.</strong> 😌
+            </p>
+
+        </div>
+
+
+        <p class="food-question">
+            So, what's your birthday mood?
+        </p>
+
+
+        <div class="food-options">
+
+            <button class="food-option"
+                data-food="🍕">
+
+                <span>🍕</span>
+
+                <small>
+                    Something delicious
+                </small>
+
+            </button>
+
+
+            <button class="food-option"
+                data-food="🍯">
+
+                <span>🍯</span>
+
+                <small>
+                    Obviously... Jalebi ❤️
+                </small>
+
+            </button>
+
+
+            <button class="food-option"
+                data-food="🍫">
+
+                <span>🍫</span>
+
+                <small>
+                    Chocolate
+                </small>
+
+            </button>
+
+
+            <button class="food-option"
+                data-food="🍓">
+
+                <span>🍓</span>
+
+                <small>
+                    Something fresh
+                </small>
+
+            </button>
+
+        </div>
+
+
+        <div class="food-reaction"
+            id="foodReaction">
+
+            <span id="selectedFood"></span>
+
+            <p id="foodText"></p>
+
+        </div>
+
+
+        <button
+            class="next-button hidden"
+            id="foodContinue">
+
+            Continue
+            <span>→</span>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+
+
+        <!-- =====================================
+             SCENE 6 — TEDDY WITH FLOWERS
+        ====================================== -->
+        <section class="scene" id="scene-teddy">
+
+            <div class="teddy-hearts">
+                <span>💕</span>
+                <span>🌸</span>
+                <span>✨</span>
+                <span>💗</span>
+            </div>
+
+            <div class="scene-content teddy-content">
+                <p class="eyebrow">
+                    A LITTLE DELIVERY
+                </p>
+
+                <h2>
+                    Someone came
+                    <br>
+                    <span>with flowers.</span>
+                </h2>
+
+                <div class="teddy-delivery">
+                    <div class="teddy-character">🧸</div>
+                    <div class="teddy-bouquet">💐</div>
+                </div>
+
+                <p class="teddy-message">
+                    I couldn't send a teddy to Nagpur...
+                    <br>
+                    so I sent this little one with flowers instead. 🌸
+                </p>
+
+                <div class="obvious-button-wrap">
+                    <div class="tap-guide">👆 TAP HERE</div>
+                    <button class="next-button obvious-next" data-next="scene-photos">
+                        Meet the next surprise
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =====================================
+             SCENE 7 — PHOTOS
+        ====================================== -->
+
+        <section class="scene"
+            id="scene-photos">
+
+            <div class="scene-content photos-content">
+
+                <p class="eyebrow">
+                    A FEW PICTURES
+                </p>
+
+                <h2>
+                    Just a few
+                    <br>
+                    pictures of <span>you.</span>
+                </h2>
+
+
+                <div class="photo-viewer">
+
+                    <div class="photo-frame">
+
+                        <img
+                            id="memoryPhoto"
+                            src="images/photo1.jpg"
+                            alt="A photo of Saloni">
+
+                    </div>
+
+
+                    <div class="photo-caption">
+
+                        <span id="photoNumber">
+                            01
+                        </span>
+
+                        <p id="photoCaption">
+                            Just you being you. 🌸
+                        </p>
+
+                    </div>
+
+
+                    <div class="photo-dots">
+
+                        <span class="photo-dot active"></span>
+                        <span class="photo-dot"></span>
+                        <span class="photo-dot"></span>
+
+                    </div>
+
+
+                    <button
+                        class="primary-button"
+                        id="nextPhotoButton">
+
+                        Next photo
+                        <span>→</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SCENE 8 — FUTURE MEMORIES
+        ====================================== -->
+
+        <section class="scene"
+            id="scene-future">
+
+            <div class="scene-content future-content">
+
+                <div class="future-camera">
+                    📸
+                </div>
+
+                <p class="eyebrow">
+                    AND SOMEDAY...
+                </p>
+
+                <h2>
+                    We haven't taken
+                    <br>
+                    all our <span>best photos</span> yet.
+                </h2>
+
+                <div class="empty-photos">
+
+                    <div>?</div>
+                    <div>?</div>
+                    <div>?</div>
+
+                </div>
+
+                <p class="future-text">
+                    There are still so many
+                    memories waiting for us.
+                </p>
+
+                <p class="future-small">
+                    These spaces are waiting
+                    for the photos we'll take
+                    someday. ❤️
+                </p>
+
+
+                <button
+                    class="next-button"
+                    data-next="scene-letter">
+
+                    There's one more thing
+                    <span>→</span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SCENE 9 — LETTER
+        ====================================== -->
+
+        <section class="scene"
+            id="scene-letter">
+
+            <div class="scene-content letter-content">
+
+                <p class="eyebrow">
+                    NO JOKES THIS TIME
+                </p>
+
+                <h2>
+                    Something I
+                    <br>
+                    wanted to <span>tell you.</span>
+                </h2>
+
+
+                <div class="envelope-container"
+                    id="envelopeContainer">
+
+                    <div class="envelope"
+                        id="envelope">
+
+                        <div class="envelope-back"></div>
+
+                        <div class="envelope-paper">
+
+                            <p>
+                                For Saloni ❤️
+                            </p>
+
+                        </div>
+
+                        <div class="envelope-front"></div>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="openLetterButton">
+
+                    Open my letter
+                    💌
+
+                </button>
+
+
+                <div class="personal-letter hidden"
+                    id="personalLetter">
+
+                    <p>
+                        Dear Saloni,
+                    </p>
+
+                    <p>
+                        I just wanted to wish you a very happy birthday 
+                        and say that I'm really glad to have you as my friend.
+                        We've had so many random conversations, jokes, and
+                        little moments together, and honestly, I really enjoy all of them.  
+                    </p>
+
+                    <p>
+                       We may be in different cities,
+                       but that doesn't change our friendship. 
+                       I hope we always stay in touch and keep 
+                       making more memories together.
+                    </p>
+
+                    <p>
+                        I hope this birthday brings
+                        you everything that makes you
+                        happy — good food, beautiful
+                        flowers, lots of laughter,
+                        and countless reasons to smile.
+                    </p>
+
+                    <p>
+                        Keep being exactly who you are.
+                    </p>
+
+                    <p>
+                        And here's to all the memories
+                        we haven't made yet. ❤️
+                    </p>
+
+                    <p class="letter-signature">
+                        — Your best friend
+                        <br>
+                        Himanshu
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="next-button hidden"
+                    id="letterContinue">
+
+                    One last surprise...
+                    <span>→</span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+<!-- =====================================
+     SCENE 10 — GIFTS ONE BY ONE
+====================================== -->
+<section class="scene" id="scene-gift">
+
+    <div class="scene-content gift-content">
+        <p class="eyebrow">
+            ONE LAST SURPRISE
+        </p>
+
+        <h2 id="giftTitle">
+            I have something
+            <br>
+            <span>for you.</span>
+        </h2>
+
+        <div class="gift-teddy" id="giftTeddy">🧸💐</div>
+
+        <p class="gift-message" id="giftMessage">
+            Three little gifts... one at a time. ❤️
+        </p>
+
+        <div class="gift-progress" id="giftProgress">
+            <span class="gift-step active">1</span>
+            <span class="gift-step-line"></span>
+            <span class="gift-step">2</span>
+            <span class="gift-step-line"></span>
+            <span class="gift-step">3</span>
+        </div>
+
+        <div class="single-gift-card" id="singleGiftCard">
+            <div class="gift-number" id="giftNumber">GIFT 1</div>
+            <div class="single-gift-icon" id="singleGiftIcon">🎁</div>
+            <h3 id="singleGiftTitle">A sweet surprise</h3>
+            <p id="singleGiftText">
+                Something sweet for someone sweet. 🍫❤️
+            </p>
+        </div>
+
+        <div class="obvious-button-wrap gift-button-wrap">
+            <div class="tap-guide">👆 TAP HERE</div>
+            <button class="primary-button obvious-button" id="openGiftButton">
+                Open Gift 1 🎁
+                <span>→</span>
+            </button>
+        </div>
+
+        <div class="birthday-finale hidden" id="birthdayFinale">
+            <div class="final-gifts">
+                <span>🍫</span>
+                <span>🧸</span>
+                <span>💐</span>
+            </div>
+
+            <h2>
+                HAPPY
+                <br>
+                <span>BIRTHDAY</span>
+                <br>
+                SALONI ❤️
+            </h2>
+
+            <p class="final-message">
+                A little chocolate,
+                <br>
+                a little teddy,
+                <br>
+                and a bouquet of flowers...
+                <br><br>
+                Because you deserve
+                all three. 🌸
+            </p>
+
+            <p class="final-distance">
+                From Pune
+                <span>→</span>
+                Nagpur
+                <br>
+                A little birthday surprise
+                <br>
+                from me to you. ❤️
+            </p>
+
+            <div class="final-teddy">🧸🌸</div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- Progress indicator -->
+
+    <div class="progress"
+        id="progress">
+
+        <span class="progress-number"
+            id="progressNumber">
+            01
+        </span>
+
+        <span class="progress-line"></span>
+
+        <span class="progress-total">
+            10
+        </span>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

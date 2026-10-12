@@ -1,0 +1,2201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+body {
+    font-family: "DM Sans", sans-serif;
+
+    color: #3c3338;
+
+    background: #fff8fb;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+button:focus {
+    outline: none;
+}
+
+
+.background-glow {
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+
+    opacity: 0.25;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+.glow-one {
+    background: #f2b9cc;
+
+    top: -100px;
+    left: -100px;
+}
+
+
+.glow-two {
+    background: #cfc4ef;
+
+    right: -100px;
+    bottom: -100px;
+}
+
+
+/* =========================================
+   APP
+========================================= */
+
+#app {
+    width: 100%;
+    height: 100svh;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.scene {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding:
+        55px 22px 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateX(35px) scale(0.98);
+
+    transition:
+        opacity 0.65s ease,
+        transform 0.65s ease,
+        visibility 0.65s;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    z-index: 1;
+}
+
+
+.scene.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateX(0)
+        scale(1);
+
+    z-index: 2;
+}
+
+
+.scene-content {
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: auto;
+
+    position: relative;
+
+    z-index: 5;
+
+    animation: contentAppear 0.8s ease;
+}
+
+
+.scene::-webkit-scrollbar {
+    width: 0;
+}
+
+
+/* =========================================
+   TYPOGRAPHY
+========================================= */
+
+h1,
+h2,
+h3 {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-weight: 500;
+}
+
+
+h1 span,
+h2 span {
+    color: #cc7694;
+
+    font-style: italic;
+}
+
+
+.eyebrow {
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    color: #c66d8b;
+
+    margin-bottom: 18px;
+}
+
+
+.scene-description {
+    color: #766d73;
+
+    line-height: 1.8;
+
+    max-width: 450px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+/* Clear, friendly guidance so the next action is
+   obvious even for someone seeing the website
+   for the first time. */
+button.guided-button {
+    position: relative;
+    overflow: visible;
+    isolation: isolate;
+}
+
+button.guided-button::before {
+    content: attr(data-hint);
+    position: absolute;
+    left: 50%;
+    top: -34px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #fff;
+    color: #bd6685;
+    border: 1px solid #f1d3df;
+    box-shadow: 0 8px 22px rgba(189, 102, 133, 0.16);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    z-index: 5;
+    pointer-events: none;
+    animation: tapHintFloat 1.35s ease-in-out infinite;
+}
+
+button.guided-button::after {
+    content: "↓";
+    position: absolute;
+    left: 50%;
+    top: -9px;
+    transform: translateX(-50%);
+    color: #bd6685;
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1;
+    z-index: 5;
+    pointer-events: none;
+    animation: tapArrow 1.35s ease-in-out infinite;
+}
+
+.primary-button {
+    border: none;
+
+    background: #3d343a;
+
+    color: #fff;
+
+    padding:
+        15px 23px;
+
+    border-radius: 50px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-top: 28px;
+
+    min-height: 50px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(61, 52, 58, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.primary-button span,
+.next-button span {
+    margin-left: 7px;
+}
+
+
+.primary-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 16px 35px
+        rgba(205, 91, 128, 0.38);
+}
+
+.primary-button:active {
+    transform: scale(0.94);
+}
+
+.obvious-button-wrap {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.tap-guide {
+    color: #c95f82;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: -18px;
+    z-index: 2;
+    animation: tapGuide 1.3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.obvious-button {
+    min-width: 250px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 12px 30px rgba(205, 91, 128, 0.25);
+    }
+    50% {
+        box-shadow: 0 12px 42px rgba(205, 91, 128, 0.48);
+    }
+}
+
+@keyframes tapGuide {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.75;
+    }
+    50% {
+        transform: translateY(6px);
+        opacity: 1;
+    }
+}
+
+
+.next-button {
+    border: 1px solid #e7b7c8;
+    background: linear-gradient(135deg, #fff, #fff3f7);
+    color: #a95475;
+    font-weight: 800;
+    font-size: 13px;
+    margin-top: 36px;
+    padding: 13px 22px;
+    min-height: 50px;
+    min-width: 220px;
+    border-radius: 999px;
+    box-shadow: 0 10px 26px rgba(189, 102, 133, 0.14);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    animation: continueButtonPulse 2s ease-in-out infinite;
+}
+
+.next-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 34px rgba(189, 102, 133, 0.24);
+    background: #fff;
+}
+
+.next-button:active {
+    transform: scale(0.96);
+}
+
+@keyframes continueButtonPulse {
+    0%, 100% {
+        box-shadow: 0 10px 26px rgba(189, 102, 133, 0.14);
+    }
+    50% {
+        box-shadow: 0 12px 34px rgba(189, 102, 133, 0.28);
+    }
+}
+
+@keyframes tapHintFloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-4px);
+    }
+}
+
+@keyframes tapArrow {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 0.75;
+    }
+    50% {
+        transform: translateX(-50%) translateY(5px);
+        opacity: 1;
+    }
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================
+   SCENE 1 — OPENING
+========================================= */
+
+#scene-opening {
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(247, 207, 220, 0.65),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(220, 212, 244, 0.65),
+            transparent 35%
+        ),
+        #fff9fc;
+}
+
+
+.opening-content {
+    max-width: 550px;
+}
+
+
+.small-flower {
+    font-size: 65px;
+
+    margin-bottom: 15px;
+
+    animation:
+        floating 3s
+        ease-in-out infinite;
+}
+
+
+.opening-content h1 {
+    font-size:
+        clamp(58px, 16vw, 100px);
+
+    line-height: 0.95;
+
+    margin-bottom: 25px;
+}
+
+
+.opening-text {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 24px;
+
+    line-height: 1.4;
+}
+
+
+.opening-subtext {
+    color: #91878d;
+
+    margin-top: 10px;
+
+    font-size: 13px;
+}
+
+
+.tiny-hint {
+    margin-top: 15px;
+
+    color: #aaa;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+.floating-flower {
+    position: absolute;
+
+    font-size: 32px;
+
+    opacity: 0.55;
+
+    pointer-events: none;
+
+    animation:
+        floating 5s
+        ease-in-out infinite;
+}
+
+
+.flower-1 {
+    top: 15%;
+    left: 8%;
+}
+
+
+.flower-2 {
+    top: 22%;
+    right: 8%;
+
+    animation-delay: 1s;
+}
+
+
+.flower-3 {
+    bottom: 15%;
+    left: 15%;
+
+    animation-delay: 2s;
+}
+
+
+/* =========================================
+   SCENE 2 — BIRTHDAY
+========================================= */
+
+#scene-birthday {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff0f6,
+            #f3efff
+        );
+}
+
+
+.birthday-content h2 {
+    font-size:
+        clamp(58px, 16vw, 100px);
+
+    line-height: 0.9;
+}
+
+
+.birthday-content h3 {
+    color: #c66e8d;
+
+    font-size:
+        clamp(36px, 10vw, 60px);
+
+    margin-top: 12px;
+}
+
+
+.birthday-small {
+    color: #81777d;
+
+    margin-bottom: 18px;
+}
+
+
+.birthday-cake {
+    font-size: 90px;
+
+    margin: 28px 0;
+
+    animation:
+        cakePop 1s ease;
+}
+
+
+.birthday-message {
+    color: #716970;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   SCENE 3 — DISTANCE
+========================================= */
+
+#scene-distance {
+    background: #fffafd;
+}
+
+
+.distance-content h2 {
+    font-size:
+        clamp(40px, 11vw, 70px);
+
+    line-height: 1.05;
+
+    margin-bottom: 45px;
+}
+
+
+.city-route {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    max-width: 650px;
+
+    margin: auto;
+}
+
+
+.city {
+    min-width: 55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+.city-pin {
+    font-size: 32px;
+
+    margin-bottom: 7px;
+}
+
+
+.city strong {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+
+.city small {
+    color: #a39aa0;
+
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+
+.route {
+    width: 42%;
+
+    height: 3px;
+
+    margin:
+        0 15px;
+
+    background: #ead1dc;
+
+    position: relative;
+}
+
+
+.route-line::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+}
+
+
+.travelling-letter {
+    position: absolute;
+
+    left: 0;
+
+    top: -22px;
+
+    font-size: 30px;
+
+    opacity: 0;
+}
+
+
+.travelling-letter.traveling {
+    opacity: 1;
+
+    animation:
+        letterTravel
+        6s
+        cubic-bezier(
+            0.25,
+            0.8,
+            0.3,
+            1
+        )
+        forwards;
+}
+
+.letter-status {
+    margin-top: 25px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 16px;
+
+    color: #bd6685;
+
+    min-height: 25px;
+
+    animation:
+        fadeUp 0.8s ease;
+}
+
+
+.letter-status.delivered {
+    color: #8d7180;
+
+    animation:
+        fadeUp 0.8s ease;
+}
+
+
+.distance-message {
+    margin-top: 35px;
+
+    line-height: 1.8;
+
+    color: #746b71;
+}
+
+
+.distance-message p {
+    margin: 3px;
+}
+
+
+.distance-result {
+    margin-top: 25px;
+
+    animation:
+        fadeUp 0.8s ease;
+}
+
+
+.distance-result p {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 20px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   SCENE 4 — FLOWERS
+========================================= */
+
+#scene-flowers {
+    background:
+        linear-gradient(
+            180deg,
+            #fff8fb,
+            #f7f0fc
+        );
+}
+
+
+.flowers-content h2 {
+    font-size:
+        clamp(45px, 12vw, 75px);
+
+    line-height: 1;
+}
+
+
+.garden {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 550px;
+
+    height: 190px;
+
+    margin:
+        25px auto 5px;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,0),
+            rgba(230,210,215,0.25)
+        );
+}
+
+
+.garden-ground {
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 30px;
+
+    background: #d8c0ad;
+
+    border-radius:
+        50% 50% 0 0;
+}
+
+
+.grown-flower {
+    position: absolute;
+
+    bottom: 23px;
+
+    transform-origin:
+        bottom center;
+
+    animation:
+        growFlower 0.8s
+        cubic-bezier(
+            0.2,
+            1.4,
+            0.4,
+            1
+        );
+}
+
+
+.flower-count {
+    color: #a99da3;
+
+    font-size: 11px;
+
+    margin-top: 5px;
+}
+/* =========================================
+   AUTOMATIC FLOWER GARDEN
+========================================= */
+
+.flower-message {
+    min-height: 25px;
+
+    margin-top: 10px;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 17px;
+
+    color: #bd6685;
+
+    animation:
+        fadeUp 0.7s ease;
+}
+
+
+.grown-flower {
+    position: absolute;
+
+    bottom: 23px;
+
+    transform-origin:
+        bottom center;
+
+    animation:
+        growFlower 1.2s
+        cubic-bezier(
+            0.2,
+            1.4,
+            0.4,
+            1
+        );
+
+    z-index: 3;
+
+    filter:
+        drop-shadow(
+            0 5px 5px
+            rgba(80, 50, 60, 0.08)
+        );
+}
+
+
+.garden {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 550px;
+
+    height: 190px;
+
+    margin:
+        25px auto 5px;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,0),
+            rgba(230,210,215,0.25)
+        );
+}
+
+
+.garden-ground {
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 30px;
+
+    background: #d8c0ad;
+
+    border-radius:
+        50% 50% 0 0;
+
+    z-index: 2;
+}
+
+
+@keyframes growFlower {
+
+    0% {
+        transform:
+            scale(0)
+            translateY(30px)
+            rotate(-10deg);
+
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    70% {
+        transform:
+            scale(1.15)
+            translateY(-3px)
+            rotate(5deg);
+    }
+
+    100% {
+        transform:
+            scale(1)
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+/* =========================================
+   SCENE 5 — FOOD
+========================================= */
+
+#scene-food {
+    background: #fffdf8;
+}
+
+
+.food-content h2 {
+    font-size:
+        clamp(46px, 12vw, 75px);
+
+    line-height: 1;
+}
+
+
+.food-question {
+    margin-top: 30px;
+
+    font-weight: 600;
+}
+
+
+.food-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    max-width: 430px;
+
+    margin: 20px auto 0;
+}
+
+
+.food-option {
+    border: 1px solid #eee3e7;
+
+    background: #fff;
+
+    border-radius: 22px;
+
+    padding: 20px 10px;
+
+    min-height: 115px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(60, 45, 50, 0.05);
+
+    transition: 0.25s;
+}
+
+
+.food-option:active {
+    transform: scale(0.94);
+}
+
+
+.food-option.selected {
+    border-color: #d687a3;
+
+    background: #fff4f8;
+
+    transform: translateY(-4px);
+}
+
+
+.food-option span {
+    display: block;
+
+    font-size: 42px;
+
+    margin-bottom: 8px;
+}
+
+
+.food-option small {
+    color: #756c72;
+
+    font-size: 10px;
+}
+
+
+.food-reaction {
+    min-height: 70px;
+
+    margin-top: 15px;
+
+    animation:
+        fadeUp 0.5s ease;
+}
+
+
+.food-reaction span {
+    font-size: 30px;
+}
+
+
+.food-reaction p {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color: #bd6685;
+
+    margin-top: 5px;
+}
+
+/* =========================================
+   JALEBI SPECIAL
+========================================= */
+
+.jalebi-intro {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin:
+        20px auto 10px;
+
+    padding:
+        12px 20px;
+
+    max-width: 330px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 239, 207, 0.65);
+
+    border:
+        1px solid rgba(210, 165, 100, 0.2);
+
+    animation:
+        fadeUp 0.7s ease;
+}
+
+
+.jalebi-intro span {
+    font-size: 30px;
+}
+
+
+.jalebi-intro p {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 16px;
+
+    color: #75646a;
+}
+
+
+.jalebi-intro strong {
+    color: #d08328;
+}
+
+
+
+/* =========================================
+   SCENE 6 — TEDDY WITH FLOWERS
+========================================= */
+
+#scene-teddy {
+    background:
+        radial-gradient(circle at 20% 20%, #ffdce8, transparent 32%),
+        radial-gradient(circle at 80% 80%, #eee4ff, transparent 35%),
+        #fff8fb;
+    overflow: hidden;
+}
+
+.teddy-content h2 {
+    font-size: clamp(44px, 11vw, 72px);
+    line-height: 1;
+}
+
+.teddy-delivery {
+    position: relative;
+    width: 250px;
+    height: 190px;
+    margin: 25px auto 10px;
+}
+
+.teddy-character {
+    font-size: 125px;
+    position: absolute;
+    left: 38px;
+    bottom: 5px;
+    animation: teddyWalk 2.8s ease-in-out infinite;
+    filter: drop-shadow(0 10px 10px rgba(80, 50, 60, 0.12));
+}
+
+.teddy-bouquet {
+    font-size: 72px;
+    position: absolute;
+    right: 20px;
+    bottom: 25px;
+    transform: rotate(-8deg);
+    animation: bouquetFloat 2.4s ease-in-out infinite;
+}
+
+.teddy-message {
+    font-family: "Playfair Display", serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #806d76;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.teddy-hearts span {
+    position: absolute;
+    font-size: 24px;
+    animation: floating 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.teddy-hearts span:nth-child(1) { top: 18%; left: 15%; }
+.teddy-hearts span:nth-child(2) { top: 25%; right: 15%; animation-delay: .7s; }
+.teddy-hearts span:nth-child(3) { bottom: 20%; left: 12%; animation-delay: 1.2s; }
+.teddy-hearts span:nth-child(4) { bottom: 25%; right: 12%; animation-delay: 1.7s; }
+
+@keyframes teddyWalk {
+    0%, 100% { transform: translateX(-5px) rotate(-2deg); }
+    50% { transform: translateX(8px) rotate(2deg); }
+}
+
+@keyframes bouquetFloat {
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50% { transform: rotate(-2deg) translateY(-8px); }
+}
+
+/* =========================================
+   SCENE 7 — PHOTOS
+========================================= */
+
+#scene-photos {
+    background:
+        linear-gradient(
+            150deg,
+            #fff8fb,
+            #f5effc
+        );
+}
+
+
+.photos-content h2 {
+    font-size:
+        clamp(43px, 11vw, 72px);
+
+    line-height: 1;
+}
+
+
+.photo-viewer {
+    max-width: 390px;
+
+    margin:
+        25px auto 0;
+}
+
+
+.photo-frame {
+    width: 100%;
+
+    aspect-ratio: 4 / 5;
+
+    background: #eee;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 20px 55px
+        rgba(50, 40, 45, 0.15);
+}
+
+
+.photo-frame img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.5s ease;
+}
+
+
+.photo-caption {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 15px;
+}
+
+
+.photo-caption span {
+    color: #c36d8a;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+}
+
+
+.photo-caption p {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 17px;
+}
+
+
+.photo-dots {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 12px;
+}
+
+
+.photo-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #d8cdd2;
+}
+
+
+.photo-dot.active {
+    background: #c56f8d;
+
+    width: 20px;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   SCENE 8 — FUTURE
+========================================= */
+
+#scene-future {
+    background:
+        linear-gradient(
+            145deg,
+            #f7f0ff,
+            #fff1f6
+        );
+}
+
+
+.future-camera {
+    font-size: 55px;
+
+    margin-bottom: 15px;
+}
+
+
+.future-content h2 {
+    font-size:
+        clamp(39px, 10vw, 68px);
+
+    line-height: 1.02;
+}
+
+
+.empty-photos {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin: 30px auto;
+}
+
+
+.empty-photos div {
+    width: 70px;
+    height: 85px;
+
+    border: 1px dashed #cdaabb;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #c47a96;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 35px;
+
+    background:
+        rgba(255,255,255,0.35);
+}
+
+
+.future-text {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 21px;
+
+    line-height: 1.5;
+
+    max-width: 480px;
+
+    margin: auto;
+}
+
+
+.future-small {
+    color: #938990;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    max-width: 400px;
+
+    margin:
+        15px auto 0;
+}
+
+
+/* =========================================
+   SCENE 9 — LETTER
+========================================= */
+
+#scene-letter {
+    background: #fffafc;
+}
+
+
+.letter-content h2 {
+    font-size:
+        clamp(44px, 11vw, 72px);
+
+    line-height: 1;
+}
+
+
+.envelope-container {
+    margin:
+        40px auto 15px;
+
+    width: 180px;
+
+    height: 130px;
+
+    perspective: 800px;
+}
+
+
+.envelope {
+    position: relative;
+
+    width: 180px;
+    height: 120px;
+
+    transform-style:
+        preserve-3d;
+
+    transition:
+        transform 0.8s ease;
+}
+
+
+.envelope-back {
+    position: absolute;
+
+    inset: 0;
+
+    background: #e8a9bb;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(90, 60, 70, 0.16);
+}
+
+
+.envelope-paper {
+    position: absolute;
+
+    width: 150px;
+    height: 95px;
+
+    left: 15px;
+    top: 10px;
+
+    background: #fffdf9;
+
+    border-radius: 4px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color: #9c6177;
+
+    z-index: 2;
+
+    transition:
+        transform 0.8s ease;
+}
+
+
+.envelope-front {
+    position: absolute;
+
+    inset: 0;
+
+    background: #d98da6;
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    border-radius: 8px;
+
+    z-index: 3;
+}
+
+
+.envelope-container.open .envelope-paper {
+    transform:
+        translateY(-80px);
+}
+
+
+.envelope-container.open .envelope {
+    transform:
+        translateY(10px);
+}
+
+
+.personal-letter {
+    width: 100%;
+
+    max-width: 620px;
+
+    margin: 30px auto 0;
+
+    padding: 30px 25px;
+
+    background: #fff;
+
+    border-radius: 20px;
+
+    text-align: left;
+
+    line-height: 1.9;
+
+    box-shadow:
+        0 15px 45px
+        rgba(60, 45, 50, 0.08);
+
+    animation:
+        letterAppear 1s ease;
+}
+
+
+.personal-letter p {
+    margin-bottom: 18px;
+}
+
+
+.letter-signature {
+    text-align: right;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color: #c06b88;
+}
+
+
+/* =========================================
+   SCENE 10 — GIFTS ONE BY ONE
+========================================= */
+
+#scene-gift {
+    background:
+        radial-gradient(circle at 20% 20%, #f8d7e4, transparent 30%),
+        radial-gradient(circle at 80% 80%, #ddd6f2, transparent 35%),
+        #fff8fb;
+}
+
+.gift-content {
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+.gift-content h2 {
+    font-size: clamp(42px, 11vw, 70px);
+    line-height: 1;
+}
+
+.gift-teddy {
+    font-size: 72px;
+    margin: 5px auto 10px;
+    animation: giftTeddyFloat 3s ease-in-out infinite;
+}
+
+.gift-message {
+    min-height: 60px;
+    margin: 10px auto 15px;
+    max-width: 340px;
+    font-family: "Playfair Display", serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: #8d7180;
+}
+
+.gift-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 12px auto 18px;
+}
+
+.gift-step {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eadde2;
+    color: #9c8b92;
+    font-size: 11px;
+    font-weight: 700;
+    transition: .3s ease;
+}
+
+.gift-step.active {
+    background: #d5678d;
+    color: #fff;
+    transform: scale(1.15);
+}
+
+.gift-step.done {
+    background: #e9a7ba;
+    color: #fff;
+}
+
+.gift-step-line {
+    width: 25px;
+    height: 2px;
+    background: #eadde2;
+}
+
+.single-gift-card {
+    width: min(320px, 90vw);
+    min-height: 285px;
+    margin: 0 auto;
+    padding: 25px 20px;
+    border-radius: 28px;
+    background: rgba(255,255,255,.86);
+    border: 1px solid #f0dce4;
+    box-shadow: 0 20px 50px rgba(90, 60, 70, .12);
+}
+
+.gift-card-pop {
+    animation: giftCardPop .7s ease;
+}
+
+.gift-number {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #c96b89;
+}
+
+.single-gift-icon {
+    font-size: 95px;
+    margin: 18px 0 10px;
+    animation: giftIconFloat 2.5s ease-in-out infinite;
+}
+
+.single-gift-card h3 {
+    color: #a35d77;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.single-gift-card p {
+    color: #766b72;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.gift-button-wrap {
+    margin-top: 8px;
+}
+
+.birthday-finale {
+    margin-top: 30px;
+    animation: finaleAppear 1.5s ease;
+}
+
+.final-gifts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.final-gifts span {
+    animation: finalGiftPop .8s ease forwards;
+}
+
+.final-gifts span:nth-child(1) { animation-delay: .1s; }
+.final-gifts span:nth-child(2) { animation-delay: .3s; }
+.final-gifts span:nth-child(3) { animation-delay: .5s; }
+
+.birthday-finale h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 10px auto 20px;
+}
+
+.birthday-finale h2 span { color: #bd6685; }
+
+.final-message {
+    max-width: 350px;
+    margin: 0 auto 20px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #75646a;
+}
+
+.final-distance {
+    font-family: "Playfair Display", serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #bd6685;
+}
+
+.final-distance span { padding: 0 5px; }
+
+.final-teddy {
+    font-size: 65px;
+    margin-top: 20px;
+    animation: giftTeddyFloat 3s ease-in-out infinite;
+}
+
+@keyframes giftTeddyFloat {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+@keyframes giftCardPop {
+    0% { opacity: 0; transform: translateY(25px) scale(.92); }
+    70% { opacity: 1; transform: translateY(-4px) scale(1.02); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes giftIconFloat {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+@keyframes finaleAppear {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes finalGiftPop {
+    from { opacity: 0; transform: scale(0) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* =========================================
+   PROGRESS
+========================================= */
+
+.progress {
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 17px;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    z-index: 100;
+
+    color: #9e9298;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+.progress-line {
+    width: 50px;
+
+    height: 1px;
+
+    background: #d8c9cf;
+}
+
+
+/* =========================================
+   CONFETTI
+========================================= */
+
+.confetti {
+    position: fixed;
+
+    top: -30px;
+
+    z-index: 1000;
+
+    pointer-events: none;
+
+    animation:
+        confettiFall
+        3.5s
+        linear forwards;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes contentAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-12px);
+    }
+
+}
+
+
+@keyframes cakePop {
+
+    0% {
+        transform:
+            scale(0)
+            rotate(-10deg);
+    }
+
+    70% {
+        transform:
+            scale(1.15)
+            rotate(5deg);
+    }
+
+    100% {
+        transform:
+            scale(1)
+            rotate(0);
+    }
+
+}
+
+
+@keyframes letterTravel {
+
+    0% {
+        left: 0;
+
+        transform:
+            translateX(0)
+            rotate(-5deg);
+    }
+
+    20% {
+        transform:
+            translateX(0)
+            rotate(5deg);
+    }
+
+    80% {
+        transform:
+            translateX(
+                calc(100% - 30px)
+            )
+            rotate(-5deg);
+    }
+
+    100% {
+        left: 100%;
+
+        transform:
+            translateX(-30px)
+            rotate(0);
+    }
+
+}
+
+
+@keyframes growFlower {
+
+    0% {
+        transform:
+            scale(0)
+            translateY(20px);
+
+        opacity: 0;
+    }
+
+    70% {
+        transform:
+            scale(1.15)
+            translateY(0);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            scale(1)
+            translateY(0);
+    }
+
+}
+
+
+@keyframes letterAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes giftFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-12px)
+            rotate(3deg);
+    }
+
+}
+
+
+@keyframes giftRibbon {
+
+    0%,
+    100% {
+        transform:
+            rotate(-5deg);
+    }
+
+    50% {
+        transform:
+            rotate(5deg);
+    }
+
+}
+
+
+@keyframes finalAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.85)
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+
+}
+
+
+@keyframes confettiFall {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .scene {
+        padding:
+            45px 16px 65px;
+    }
+
+
+    .small-flower {
+        font-size: 50px;
+    }
+
+
+    .opening-content h1 {
+        font-size: 55px;
+    }
+
+
+    .city-route {
+        transform:
+            scale(0.9);
+    }
+
+
+    .route {
+        margin:
+            0 8px;
+    }
+
+
+    .food-options {
+        gap: 8px;
+    }
+
+
+    .food-option {
+        min-height: 100px;
+    }
+
+
+    .photo-viewer {
+        max-width: 320px;
+    }
+
+
+    .empty-photos div {
+        width: 60px;
+        height: 75px;
+    }
+
+}
+/* =========================================
+   EXTRA MOBILE POLISH FOR NEW SCENES
+========================================= */
+@media (max-width: 480px) {
+    button.guided-button::before {
+        font-size: 9px;
+        letter-spacing: 1.2px;
+        top: -32px;
+    }
+
+    .next-button {
+        min-width: 205px;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .obvious-button {
+        min-width: 240px;
+        font-size: 12px;
+    }
+
+    .teddy-delivery {
+        transform: scale(.9);
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+    .teddy-message {
+        font-size: 15px;
+    }
+
+    .single-gift-card {
+        min-height: 265px;
+    }
+
+    .single-gift-icon {
+        font-size: 80px;
+    }
+
+    .birthday-finale h2 {
+        font-size: 34px;
+    }
+
+    .final-gifts {
+        font-size: 48px;
+        gap: 13px;
+    }
+}
